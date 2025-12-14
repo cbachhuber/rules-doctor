@@ -85,7 +85,7 @@ export class RepositoryChecker {
 
                 results.push({
                     repository: repoPath,
-                    check: check.name,
+                    check: check,
                     filePath: check.file,
                     passed,
                     requires: passed ? undefined : check.requires
@@ -93,7 +93,7 @@ export class RepositoryChecker {
             } catch (error) {
                 results.push({
                     repository: repoPath,
-                    check: check.name,
+                    check: check,
                     filePath: check.file,
                     passed: false,
                     error: error instanceof Error ? error.message : String(error),

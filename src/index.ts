@@ -62,7 +62,8 @@ function getFailureStatus(failure: CheckResult): { emoji: string; message: strin
         }
         return { emoji: '❌', message: failure.error };
     }
-    return { emoji: '🔍', message: 'Pattern not found' };
+    const patternThatDoesntMessUpMarkdownTables = failure.check.pattern.replace(/\|/g, '\\|');
+    return { emoji: '🔍', message: `Pattern \`${patternThatDoesntMessUpMarkdownTables}\` not found` };
 }
 
 function getFailedRequires(failure: CheckResult, allResults: CheckResult[]): RequiresEntry[] {
@@ -72,7 +73,7 @@ function getFailedRequires(failure: CheckResult, allResults: CheckResult[]): Req
 
     return failure.requires.filter(req => {
         const requiredCheckResult = allResults.find(
-            r => r.check === req.check && r.repository === failure.repository
+            r => r.check.name === req.check && r.repository === failure.repository
         );
         return requiredCheckResult && !requiredCheckResult.passed;
     });
@@ -85,10 +86,10 @@ function processResults(results: CheckResult[]): GroupedResults {
     const byCheck = new Map<string, Map<string, ProcessedFailure[]>>();
 
     for (const failure of failedResults) {
-        if (!byCheck.has(failure.check)) {
-            byCheck.set(failure.check, new Map());
+        if (!byCheck.has(failure.check.name)) {
+            byCheck.set(failure.check.name, new Map());
         }
-        const repoMap = byCheck.get(failure.check)!;
+        const repoMap = byCheck.get(failure.check.name)!;
 
         if (!repoMap.has(failure.repository)) {
             repoMap.set(failure.repository, []);

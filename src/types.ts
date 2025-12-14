@@ -34,7 +34,7 @@ export interface Config {
 
 export interface CheckResult {
     repository: string;
-    check: string;
+    check: FileCheck;
     filePath: string;
     passed: boolean;
     error?: string;
