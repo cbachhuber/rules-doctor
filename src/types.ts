@@ -16,6 +16,7 @@ export interface FileCheck {
     enabled?: boolean;  // When false, this check will be skipped
     exclude?: ExcludeEntry[]; // List of repositories to skip for this check
     requires?: RequiresEntry[]; // List of checks that should be fixed first
+    reference_example?: string; // Optional URL to a reference example (e.g., a PR demonstrating the fix)
 }
 
 export interface Config {

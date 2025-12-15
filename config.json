@@ -52,7 +52,8 @@
             "name": "semantic-pull-request",
             "file": ".github/workflows/conventional-commits.yaml",
             "pattern": "semantic-pull-request",
-            "description": "Has semantic pull request check"
+            "description": "Has semantic pull request check",
+            "reference_example": "https://github.com/bazel-contrib/rules-template/pull/167"
         },
         {
             "name": "config-ci",
@@ -107,13 +108,15 @@
             "name": "uses-bazelrc-preset",
             "file": ".bazelrc",
             "pattern": "preset.bazelrc",
-            "description": "Uses bazelrc-preset"
+            "description": "Uses bazelrc-preset",
+            "reference_example": "https://github.com/bazel-contrib/rules-template/pull/169"
         },
         {
             "name": "dont-use-eol-in-bcr-presubmit",
             "file": ".bcr/presubmit.yml",
             "pattern": "!(ubuntu2004|debian10)",
             "description": "Don't use EOL OSes in bcr presubmit",
+            "reference_example": "https://github.com/bazel-contrib/rules-template/pull/172",
             "exclude": [
                 {
                     "repository": "bazel-contrib/publish-to-bcr",

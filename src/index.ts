@@ -138,8 +138,14 @@ function generateMarkdownReport(results: CheckResult[]): string {
         const repoMap = processed.byCheck.get(checkName)!;
         lines.push(`### 🔍 ${checkName}`);
         lines.push('');
-        lines.push('| Repository | File | Status |');
-        lines.push('|------------|------|--------|');
+
+        // Get reference_example from the first failure's check (all failures in this group share the same check)
+        const firstRepo = [...repoMap.keys()][0];
+        const firstFailure = repoMap.get(firstRepo)![0];
+        const referenceExample = firstFailure.failure.check.reference_example;
+
+        lines.push('| Repository | File | Status | Reference |');
+        lines.push('|------------|------|--------|-----------|');
 
         const sortedRepos = [...repoMap.keys()].sort();
         for (const repo of sortedRepos) {
@@ -155,7 +161,8 @@ function generateMarkdownReport(results: CheckResult[]): string {
                     statusText += ` ⚠️ Fix first: ${reqLinks}`;
                 }
 
-                lines.push(`| ${repoLink} | ${fileLink} | ${statusText} |`);
+                const referenceLink = referenceExample ? `[Example](${referenceExample})` : '';
+                lines.push(`| ${repoLink} | ${fileLink} | ${statusText} | ${referenceLink} |`);
             }
         }
         lines.push('');
