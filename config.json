@@ -19,7 +19,6 @@
             "aspect-build/rules_js",
             "aspect-build/rules_py",
             "aspect-build/rules_rollup",
-            "aspect-build/rules_sol",
             "aspect-build/rules_swc",
             "aspect-build/rules_terser",
             "aspect-build/rules_ts",
