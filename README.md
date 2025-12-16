@@ -2,6 +2,8 @@
 
 A simple TypeScript tool for checking GitHub repositories against configurable rules using regex patterns.
 
+See a report of the latest nightly run at [![Run Rules Doctor](https://github.com/alexeagle/rules-doctor/actions/workflows/run-doctor.yaml/badge.svg)](https://github.com/alexeagle/rules-doctor/actions/workflows/run-doctor.yaml)
+
 ## Setup
 
 1. Install dependencies:
